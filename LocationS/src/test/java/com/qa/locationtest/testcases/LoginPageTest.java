@@ -8,12 +8,14 @@ import org.testng.annotations.Test;
 import com.qa.locationtest.base.TestBase;
 import com.qa.locationtest.pages.FilterPage;
 import com.qa.locationtest.pages.LoginPage;
+import com.qa.locationtest.util.TestUtil;
 
 
 public class LoginPageTest extends TestBase {
 		
 		LoginPage loginpage;
 		FilterPage filterpage;
+		TestUtil testutil;
 		
 		public LoginPageTest() {//this will call super class constructor
 			super();
@@ -34,12 +36,13 @@ public class LoginPageTest extends TestBase {
 		@Test(priority=2)
 		public void verifyLoginPageTitleTest() {
 			String title = loginpage.validateLoginPageTitle();
-			Assert.assertEquals(title, "Location Services");
+			Assert.assertEquals(title, "Grab Location Service Login");
 		}
 		
 		@Test(priority=3)
 		public void loginTest() {
 			filterpage = loginpage.login(prop.getProperty("username"), prop.getProperty("password"));
+			//testutil.waitForElement();
 		}
 		
 		@AfterClass
