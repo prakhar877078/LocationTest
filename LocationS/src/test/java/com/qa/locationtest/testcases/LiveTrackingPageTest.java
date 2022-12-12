@@ -11,33 +11,37 @@ import com.qa.locationtest.pages.LiveTrackingPage;
 import com.qa.locationtest.pages.LoginPage;
 import com.qa.locationtest.util.TestUtil;
 
-public class FilterPageTest extends TestBase {
-	
+public class LiveTrackingPageTest extends TestBase {
+
 	LoginPage loginpage;
 	FilterPage filterpage;
 	LiveTrackingPage livetrackingpage;
 	TestUtil testutil;
 	
-	public FilterPageTest() {
+	public LiveTrackingPageTest() {
 		super();
 	}
 	
 	@BeforeClass
-	public void setUp() {
+	public void setUp() throws InterruptedException {
 		initialization();
 		loginpage = new LoginPage();//LoginPage object have been created so that i can access LoginPage class method
+		filterpage = new FilterPage();
+		livetrackingpage = new LiveTrackingPage();
 		//testutil = new TestUtil();
-		filterpage = loginpage.login(prop.getProperty("username"), prop.getProperty("password"));                           //
+		filterpage = loginpage.login(prop.getProperty("username"), prop.getProperty("password"));  
+		livetrackingpage = filterpage.applyFilter("reliance r", "ker", "thr", "tx");
+
 	}
 	
 	@Test(priority=1)
-	public void verifyFilterPageTitleTest() {
-		String title = filterpage.validateFilterPageTitle();
-		System.out.println(title);
-		Assert.assertEquals(title, "Grab Location Service Login");
+	public void verifyCountofAllRidersTest() throws InterruptedException {
+		int all = livetrackingpage.validateCountOfAllRiders();
+		int map = livetrackingpage.validateCountOfAllRidersInMap();
+		Assert.assertEquals(all, map);
 	}
 	
-	@Test(priority=2)
+	//@Test(priority=2)
 	public void verifyFilterTest() {
 		//testutil.waitForElement();
 	   try {
@@ -55,4 +59,5 @@ public class FilterPageTest extends TestBase {
 	public void tearDown() {
 		driver.quit();
 	}
+	
 }

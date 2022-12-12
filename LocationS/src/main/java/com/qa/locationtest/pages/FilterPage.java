@@ -44,25 +44,35 @@ public class FilterPage extends TestBase {
 		return driver.getTitle();
 	}
 	
-	public LiveTrackingPage applyFilter(String bsns,String st,String ct,String htspt) {
-		TestUtil.waitForElement();
+	public LiveTrackingPage applyFilter(String bsns,String st,String ct,String htspt) throws InterruptedException {
+		//TestUtil.waitForElement();
+		Thread.sleep(5000);
 		bussiness.sendKeys(bsns);
-		TestUtil.waitForElement();
+		//TestUtil.waitForElement();
+		Thread.sleep(5000);
 		relretsouth2.click();
-		TestUtil.waitForElement();
+		//TestUtil.waitForElement();
+		Thread.sleep(5000);
 		state.sendKeys(st);
-		TestUtil.waitForElement();
+		//TestUtil.waitForElement();
+		Thread.sleep(5000);
 		kerala.click();
-		TestUtil.waitForElement();
+		//TestUtil.waitForElement();
+		Thread.sleep(5000);
 		city.sendKeys(ct);
-		TestUtil.waitForElement();
+		//TestUtil.waitForElement();
+		Thread.sleep(5000);
 		thrissur.click();
-		TestUtil.waitForElement();
+		//TestUtil.waitForElement();
+		Thread.sleep(5000);
 		hotspot.sendKeys(htspt);
-		TestUtil.waitForElement();
+		//TestUtil.waitForElement();
+		Thread.sleep(5000);
 		smartnet.click();
-		TestUtil.waitForElement();
+		//TestUtil.waitForElement();
+		Thread.sleep(5000);
 		filterbtn.click();
+		Thread.sleep(5000);
 		return new LiveTrackingPage();
 	}
 	
